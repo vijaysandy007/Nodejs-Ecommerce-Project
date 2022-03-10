@@ -10,7 +10,8 @@ const db = require('./database_connections/product_db')
 const productRouter = require('./routers/product');
 const categoriesRouter = require('./routers/categories');
 const orders = require('./routers/orders')
-const users = require('./routers/users')
+const users = require('./routers/users');
+ 
 
 
 //API MiddleWare Routes
@@ -20,6 +21,7 @@ app.use('/update',productRouter )
 app.use('/delete',productRouter )
 app.use('/register', users)
 app.use( users)
+app.use( categoriesRouter)
 
 //Read Json Data
 app.use(express.json())

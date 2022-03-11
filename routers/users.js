@@ -9,7 +9,7 @@ router.use(express.json())
 
 router.post('/', async (req, res)=>{
 
-   const user = new  registerModel({
+   const user = await new  registerModel({
        name: req.body.name,
        email: req.body.email,
        password: bcrypt.hashSync(req.body.password, 10)  

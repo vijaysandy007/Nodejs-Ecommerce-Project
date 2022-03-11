@@ -47,7 +47,7 @@ router.get('/categoryById/:id', async (req,res)=>{
 router.put('/updateCategoryById/:id', async (req,res)=>{
     const updateCategory = await categorySchema.findByIdAndUpdate({_id:req.params.id}, {
         category_name : req.body.category_name
-    })
+    },{ new: true })
    
     try {
         if(!updateCategory){

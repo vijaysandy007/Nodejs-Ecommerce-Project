@@ -15,13 +15,9 @@ const users = require('./routers/users');
 
 
 //API MiddleWare Routes
-app.use('/product',productRouter )
-app.use('/getProduct',productRouter )
-app.use('/update',productRouter )
-app.use('/delete',productRouter )
-app.use('/register', users)
-app.use( users)
-app.use( categoriesRouter)
+app.use(productRouter )
+app.use(users)
+app.use(categoriesRouter)
 
 //Read Json Data
 app.use(express.json())

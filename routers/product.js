@@ -1,17 +1,17 @@
-const Product = require('../models/product')
 const express = require('express');
 const createProduct = require('../product_controller/product_cont')
 const router = express.Router();
-router.use(express.json())
+const token = require('../token/jwt')
+router.use(express.json());
  
-router.post('/product', createProduct.createProduct);
-router.get('/getProduct', createProduct.getAllProducts )
-router.put('/update/:id', createProduct.updateProducts)
-router.delete('/delete/:id', createProduct.deleteProducts)
+router.post('/product',  token.verifyToken, createProduct.createProduct);
+router.get('/getProduct',  createProduct.getAllProducts )
+router.put('/update/:id', token.verifyToken, createProduct.updateProducts)
+router.delete('/delete/:id', token.verifyToken, createProduct.deleteProducts)
 
 //category wise product CRUD
 
- router.get('/getProductByCategoryId/:id', createProduct.getProductByCategoryId)
- router.get('/getUserProducts/:id',createProduct.getUserProcutById)
+ router.get('/getProductByCategoryId/:id',  token.verifyToken, createProduct.getProductByCategoryId)
+ router.get('/getUserProducts/:id',  token.verifyToken, createProduct.getUserProcutById)
 
 module.exports = router

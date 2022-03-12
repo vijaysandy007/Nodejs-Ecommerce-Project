@@ -23,6 +23,8 @@ const registerUser = async (req, res)=>{
     }
  }
 
+ //***************************END********************************//
+
  const loginUser = async (req,res)=>{
 
     try {
@@ -50,6 +52,8 @@ const registerUser = async (req, res)=>{
 
 }
 
+//***************************END********************************//
+
 const userDetialUpdate = async (req,res)=>{
 
     let hassedpassword = bcrypt.hashSync(req.body.password, 10)
@@ -70,6 +74,8 @@ const userDetialUpdate = async (req,res)=>{
       }
         
   }
+
+  //***************************END********************************//
 
  module.exports ={
     registerUser,

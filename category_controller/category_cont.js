@@ -20,6 +20,8 @@ const createCategory = async (req,res)=>{
 
 }
 
+//***************************END********************************//
+
 const getAllCategory = async (req,res)=>{
     const getAllCollection = await categorySchema.find()
 
@@ -30,6 +32,8 @@ const getAllCategory = async (req,res)=>{
         res.status(200).json({success:true, message:'Collection Fetched successfully :)', data:getAllCollection})
     }
 }
+
+//***************************END********************************//
 
 
 const getCategoryById = async (req,res)=>{
@@ -42,6 +46,8 @@ const getCategoryById = async (req,res)=>{
         res.status(200).json({success:true, message: getCollectionById.category_name +  ' ' + 'category Fetched successfully :)', data:getCollectionById})
     }
 }
+
+//***************************END********************************//
 
 const updateCategoryById = async (req,res)=>{
     const updateCategory = await categorySchema.findByIdAndUpdate({_id:req.params.id}, {
@@ -65,6 +71,8 @@ const updateCategoryById = async (req,res)=>{
  
 }
 
+//***************************END********************************//
+
 const deleteCategroyById = async (req,res)=>{
     const deleteCategroy = await categorySchema.findByIdAndDelete({_id: req.params.id})
 
@@ -76,6 +84,8 @@ const deleteCategroyById = async (req,res)=>{
         res.status(200).json({success:true, message: deleteCategroy.category_name +  ' ' + 'category Deleted successfully :)'}) 
     }
 }
+
+//***************************END********************************//
 
 module.exports ={
     createCategory,

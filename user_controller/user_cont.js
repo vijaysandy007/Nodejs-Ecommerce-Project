@@ -75,10 +75,23 @@ const userDetialUpdate = async (req,res)=>{
         
   }
 
+  const getAllUser = async (req,res) =>{
+     const allUser = await registerModel.find()
+
+     if(!allUser){
+        return res.status(400).send('no user found ')
+     }
+
+     else{
+        res.status(200).json({success:true, data: allUser})
+     }
+  }
+
   //***************************END********************************//
 
  module.exports ={
     registerUser,
     loginUser,
-    userDetialUpdate
+    userDetialUpdate,
+    getAllUser
  }

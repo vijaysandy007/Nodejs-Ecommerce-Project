@@ -26,6 +26,10 @@ const product = new moongse.Schema({
          type:String,
          required:true
      },
+     userregistrations: [{
+            type: moongse.Schema.Types.ObjectId,
+            ref: "userregistrations"
+    }],
       user_id:{
           type:String,
           required:true

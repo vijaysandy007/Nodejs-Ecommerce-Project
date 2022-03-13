@@ -1,8 +1,10 @@
 const Product = require('../models/product')
+const userSchema = require('../models/users')
 
 const createProduct = async (req,res) =>{
-    
+     
     const productModel = new Product({
+        
         product_name: req.body.product_name,
         description: req.body.description,
         product_price: req.body.product_price,
@@ -29,10 +31,16 @@ const createProduct = async (req,res) =>{
 //***************************END********************************//
 
 const getAllProducts = async (req,res) =>{
-    const getData = await Product.find({})
 
     try {
-       await res.status(200).json({success: true ,getData})
+         
+        const getData = await Product.find().populate('userregistrations').exec((err, posts) => {
+            if (err) console.log(err)
+            console.log(posts)
+            res.status(200).json( getData )
+        })
+
+    
     } catch (error) {
      res.status(400).json({success: false})
     }

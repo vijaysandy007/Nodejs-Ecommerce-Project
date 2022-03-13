@@ -7,5 +7,6 @@ router.use(express.json())
 router.post('/register', userController.registerUser)
 router.post('/login', userController.loginUser)
 router.put('/userDetialUpdate/:id', token.verifyToken, userController.userDetialUpdate)
+router.get('/getAllUser', userController.getAllUser)
 
 module.exports = router

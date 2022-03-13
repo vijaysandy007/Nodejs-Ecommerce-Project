@@ -34,12 +34,8 @@ const getAllProducts = async (req,res) =>{
 
     try {
          
-        const getData = await Product.find().populate('userregistrations').exec((err, posts) => {
-            if (err) console.log(err)
-            console.log(posts)
-            res.status(200).json( getData )
-        })
-
+      const getAllPostWithUser = await Product.find().populate({path:'users', select:['name']})
+      res.status(200).json(getAllPostWithUser)
     
     } catch (error) {
      res.status(400).json({success: false})

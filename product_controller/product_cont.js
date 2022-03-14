@@ -10,6 +10,7 @@ const createProduct = async (req,res) =>{
         product_price: req.body.product_price,
         product_image: req.body.product_image,
         category_id: req.body.category_id,
+        isFeatured:req.body.isFeatured,
         user_id: req.body.user_id
     })
 
@@ -34,9 +35,15 @@ const getAllProducts = async (req,res) =>{
 
     try {
          
-      const getAllPostWithUser = await Product.find().populate({path:'users', select:['name']})
-      res.status(200).json(getAllPostWithUser)
-    
+      const getAllPostWithUser = await Product.find().populate('user_id', 'name _id').populate('category_id')
+
+      if(!getAllPostWithUser){
+        return res.status(400).json({success:false, message:'Cannot find products :('})
+      }
+      else{
+          res.status(200).json({success:true, data: getAllPostWithUser})
+      }
+      
     } catch (error) {
      res.status(400).json({success: false})
     }
@@ -124,6 +131,13 @@ const getProductByCategoryId = async (req,res)=>{
 
  }
 
+ //getFeaturedProducts
+
+ const getfeaturedProducts = async(req,res) =>{
+     const featuredProducts = await Product.find({isFeatured:true})
+     res.status(200).json(featuredProducts)
+ }
+
 
 module.exports ={
     createProduct,
@@ -131,5 +145,6 @@ module.exports ={
     updateProducts,
     deleteProducts,
     getProductByCategoryId,
-    getUserProcutById
+    getUserProcutById,
+    getfeaturedProducts
 }

@@ -21,20 +21,28 @@ const product = new moongse.Schema({
       type:String,
       required:true
     },
+    isFeatured:{
+      type:Boolean,
+      default:false
+    },
+    dateCreated:{
+     type:Date,
+     default:Date.now
+    },
 
      category_id:{
-         type:String,
+         type:moongse.SchemaTypes.ObjectId,
+         ref:'category',
          required:true
      },
-     users: {
-            type: moongse.Schema.Types.ObjectId,
-            ref: "userregistrations"
+     user_id: {
+            type:moongse.SchemaTypes.ObjectId,
+            ref: "userregistrations",
+           required:true
+            
     },
-      user_id:{
-          type:String,
-          required:true
-      }
-
+   
+    
 })
 
 const Product = moongse.model('product', product)

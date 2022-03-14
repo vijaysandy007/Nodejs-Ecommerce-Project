@@ -8,6 +8,7 @@ router.post('/product',  token.verifyToken, createProduct.createProduct);
 router.get('/getProduct',  createProduct.getAllProducts )
 router.put('/update/:id', token.verifyToken, createProduct.updateProducts)
 router.delete('/delete/:id', token.verifyToken, createProduct.deleteProducts)
+router.get('/getFeatured', token.verifyToken, createProduct.getfeaturedProducts)
 
 //category wise product CRUD
 

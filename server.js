@@ -1,9 +1,6 @@
  require('dotenv').config()
 const express = require('express');
 const app = express();
-const jwt = require('jsonwebtoken');
-const moongse = require('mongoose');
-
 
 //Routes
 const db = require('./database_connections/product_db')
@@ -15,9 +12,8 @@ const users = require('./routers/users');
 
 
 //API MiddleWare Routes
-app.use(productRouter )
-app.use(users)
-app.use(categoriesRouter)
+app.use(productRouter ).use(users).use(categoriesRouter)
+
 
 //Read Json Data
 app.use(express.json())

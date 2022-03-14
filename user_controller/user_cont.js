@@ -6,6 +6,11 @@ const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res)=>{
 
+   const findDuplicate = await registerModel.findOne({email: req.body.email})
+   if(findDuplicate){
+      return res.status(400).json({succes:false, message:"Sorry Email already exists :("})
+   }
+
     const user = await new  registerModel({
         name: req.body.name,
         email: req.body.email,
@@ -76,7 +81,8 @@ const userDetialUpdate = async (req,res)=>{
   }
 
   const getAllUser = async (req,res) =>{
-     const allUser = await registerModel.find()
+     const {page=1, limit=5} = req.body
+     const allUser = await (await registerModel.find().limit(limit *1).skip((page -1)*limit))
 
      if(!allUser){
         return res.status(400).send('no user found ')

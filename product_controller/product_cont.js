@@ -32,10 +32,11 @@ const createProduct = async (req,res) =>{
 //***************************END********************************//
 
 const getAllProducts = async (req,res) =>{
+    const {page =1, limit =5} = req.body
 
     try {
          
-      const getAllPostWithUser = await Product.find().populate('user_id', 'name _id').populate('category_id')
+      const getAllPostWithUser = await Product.find().limit(limit *1).skip((page -1)*limit).populate('user_id', 'name _id').populate('category_id')
 
       if(!getAllPostWithUser){
         return res.status(400).json({success:false, message:'Cannot find products :('})

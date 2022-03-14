@@ -6,6 +6,7 @@ const registerSchema = moonge.Schema({
    },
     email:{
         type: String,
+        unique: true,
         required : true
     },
 
